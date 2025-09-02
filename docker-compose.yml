@@ -11,6 +11,18 @@ services:
     networks:
       - financelligence
 
+  api:
+    build: .
+    image: urlshortener-backend:latest
+    ports:
+      - 3001:3001
+    env_file:
+      - ./src/common/envs/.env
+    depends_on:
+      - postgres
+    networks:
+      - financelligence
+
 volumes:
    postgres:
       name: financelligence-docker-db

@@ -55,15 +55,33 @@ AWS_STORAGE_BUCKET_NAME=
 
 ## Usage
 
-### Postgres
+### Using Docker Compose (Recommended)
 ```bash
-$ docker-compose up
+# Start both PostgreSQL and API
+$ docker-compose up -d
+
+# Stop the services
+$ docker-compose down
 ```
 
-### Nest App
+### Using Pre-built Docker Image
+If you have the pre-built image file:
+
 ```bash
-$ docker build -t your-image-name .
-$ docker run -d --name your-container-name -p 3001:3001 your-image-name
+# To load the image:
+docker load < urlshortener-backend.tar.gz
+
+# To run:
+docker run -p 3001:3001 urlshortener-backend:latest
+```
+
+### Building Docker Image Manually
+```bash
+# Build the image
+$ docker build -t urlshortener-backend .
+
+# Run the container
+$ docker run -d --name urlshortener-api -p 3001:3001 urlshortener-backend
 ```
 
 ## Running the app
